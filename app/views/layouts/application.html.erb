@@ -9,21 +9,17 @@
 <body>
 
 <% if user_signed_in? %>
-	<img src="<%= current_user.image_url %>"/>
-	Olá, <%= current_user.name %>!
-	<br/><br/>
-	<strong>Minha cidade:</strong> <%= current_user.location %>
-	<br/> <br/>
-	<strong>Lista de amigos:</strong> <br/>
-	<% facebook_user.friends.each do |friend| %>
-		<%= friend.name %> <br/>
-	<% end %>
+	<img src="<%= current_user.image_url %>" width="30" height="30"/>
+	Olá, <%= link_to current_user.name, user_path(current_user) %>
+	<hr/>
 <% else %>
-	<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+	<%= link_to "Login com Facebook", user_omniauth_authorize_path(:facebook) %>
 <% end %>
 
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
+
+<br/>
 
 <%= yield %>
 

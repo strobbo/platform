@@ -1,0 +1,4 @@
+<% @user.followed_users.each do |followed_user| %>
+	<img src="<%= followed_user.image_url %>" width="30" height="30"/>	
+	<%= followed_user.name %> <br/>
+<% end %>

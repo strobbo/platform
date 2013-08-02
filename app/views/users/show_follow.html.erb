@@ -1,0 +1,7 @@
+<h2><%= @title %></h2>
+
+<% if @users.any? %>
+	<ul class="users">
+  	<%= render @users %>
+  </ul>
+<% end %>

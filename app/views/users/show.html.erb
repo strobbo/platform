@@ -1,0 +1,28 @@
+<img src="<%= current_user.image_url %>" width="100" height="100"/>
+<h2><%= @user.name %></h2>
+<br/>
+
+<% if user_signed_in? and current_user != @user %>
+	<div id="follow_form">
+		<% if !current_user.following? @user %>
+			<%= render 'users/follow_form' %>
+		<% else %>
+			<%= render 'users/unfollow_form' %>
+		<% end %>
+	</div>
+<% end %>
+
+<strong>Cidade:</strong> <%= @user.location %>
+<br/> <br/> <br/>
+
+<strong>Seguindo:</strong> <br/>
+<div id="following">
+	<%= render 'users/show_following' %>
+</div>
+<br/><br/>
+
+<strong>Seguidores:</strong> <br/>
+<div id="followers">
+	<%= render 'users/show_followers' %>
+</div>
+<br/><br/>
