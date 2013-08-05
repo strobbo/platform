@@ -13,12 +13,10 @@
 	Olá, <%= link_to current_user.name, user_path(current_user) %>
 	&nbsp; &nbsp; &nbsp; &nbsp;
 	<%= link_to "Sair", destroy_user_session_path	%>
-	<hr/>
 <% else %>
-	<div style="float: left">
-		<%= link_to "Login com Facebook", user_omniauth_authorize_path(:facebook) %>
-	</div>
+	<%= link_to "Login com Facebook", user_omniauth_authorize_path(:facebook) %>
 <% end %>
+<hr/>
 
 
 <p class="notice"><%= notice %></p>

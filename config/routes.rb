@@ -1,7 +1,10 @@
 Platform::Application.routes.draw do
 
-  # Root da aplicacao
-  root :to => "activities#index"
+  # Homepages
+	authenticated do
+		root :to => 'activities#index'
+	end
+  root :to => redirect("/sign_in")
 
   resources :activities, :only => :index
   resources :events
