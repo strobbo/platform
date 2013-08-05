@@ -1,7 +1,7 @@
 Platform::Application.routes.draw do
 
   # Root da aplicacao
-  root :to => "events#index"
+  root :to => "activities#index"
 
   resources :activities, :only => :index
   resources :events
