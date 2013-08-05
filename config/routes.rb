@@ -3,15 +3,15 @@ Platform::Application.routes.draw do
   # Root da aplicacao
   root :to => "events#index"
 
+  resources :activities, :only => :index
   resources :events
+  resources :relationships, :only => [:create, :destroy]
 
   resources :users do
     member do
       get :following, :followers, :show, :controller => "users/users"
     end
   end
-
-  resources :relationships, :only => [:create, :destroy]
 
   devise_for :users, 
 		:controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :sessions => "users/sessions" }

@@ -45,3 +45,6 @@ gem 'omniauth-facebook'
 
 # Gem para integração com a API do Facebook
 gem 'fb_graph'
+
+# Gem para controle de news feed e notificações
+gem 'public_activity'

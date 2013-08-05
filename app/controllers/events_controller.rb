@@ -44,6 +44,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+  			@event.create_activity :create, owner: current_user
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else
@@ -60,6 +61,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
+  			@event.create_activity :update, owner: current_user    
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
@@ -73,7 +75,7 @@ class EventsController < ApplicationController
   # DELETE /events/1.json
   def destroy
     @event = Event.find(params[:id])
-    @event.destroy
+		@event.destroy
 
     respond_to do |format|
       format.html { redirect_to events_url }
