@@ -2,6 +2,16 @@
 
 one:
   name: MyString
+  location: MyString
+  date: 2013-08-12
+  time: 2013-08-12 21:56:24
+  description: MyText
+  owner: 
 
 two:
   name: MyString
+  location: MyString
+  date: 2013-08-12
+  time: 2013-08-12 21:56:24
+  description: MyText
+  owner: 

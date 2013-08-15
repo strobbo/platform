@@ -1,5 +1,8 @@
 Platform::Application.routes.draw do
 
+  resources :events
+
+
   # Homepages
 	authenticated do
 		root :to => 'activities#index'

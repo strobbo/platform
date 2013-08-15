@@ -4,7 +4,26 @@
   <b>Name:</b>
   <%= @event.name %>
 </p>
+<%= current_user.inspect %>
+<p>
+  <b>Location:</b>
+  <%= @event.location %>
+</p>
 
+<p>
+  <b>Date:</b>
+  <%= @event.date %>
+</p>
+
+<p>
+  <b>Time:</b>
+  <%= @event.time %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @event.description %>
+</p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
