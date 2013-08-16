@@ -4,12 +4,15 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :trackable, :omniauthable, :omniauth_providers => [:facebook]
 
+	# helper da gem 'unread'
+	acts_as_reader
+
   # Setup accessible (or protected) attributes for your model
 	attr_accessible :email, :encrypted_password, :provider, :uid, :name, :image, :location, 
 									:profile_url, :image_url, :gender, :birthday
 
-        # Relacionamentos nos quais este usuário possuem eventos
-        has_many :events, dependent: :destroy
+	# Relacionamentos nos quais este usuário possuem eventos
+	has_many :events, dependent: :destroy
 
 	# Relacionamentos nos quais este usuário segue outro usuário
 	has_many :relationships, 

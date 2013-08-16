@@ -1,8 +1,5 @@
 Platform::Application.routes.draw do
 
-  resources :events
-
-
   # Homepages
 	authenticated do
 		root :to => 'activities#index'
@@ -10,6 +7,8 @@ Platform::Application.routes.draw do
   root :to => redirect("/sign_in")
 
   resources :activities, :only => :index
+	get '/notifications', to: 'activities#notifications', as: 'notifications'
+
   resources :events
   resources :relationships, :only => [:create, :destroy]
 

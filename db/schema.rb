@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813005624) do
+ActiveRecord::Schema.define(:version => 20130816045154) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20130813005624) do
     t.datetime "updated_at",     :null => false
   end
 
+  add_index "activities", ["created_at"], :name => "index_activities_on_created_at"
   add_index "activities", ["owner_id", "owner_type"], :name => "index_activities_on_owner_id_and_owner_type"
   add_index "activities", ["recipient_id", "recipient_type"], :name => "index_activities_on_recipient_id_and_recipient_type"
   add_index "activities", ["trackable_id", "trackable_type"], :name => "index_activities_on_trackable_id_and_trackable_type"
@@ -48,6 +49,15 @@ ActiveRecord::Schema.define(:version => 20130813005624) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "read_marks", :force => true do |t|
+    t.integer  "readable_id"
+    t.integer  "user_id",       :null => false
+    t.string   "readable_type", :null => false
+    t.datetime "timestamp"
+  end
+
+  add_index "read_marks", ["user_id", "readable_type", "readable_id"], :name => "index_read_marks_on_user_id_and_readable_type_and_readable_id"
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
