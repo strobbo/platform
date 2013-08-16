@@ -1,8 +1,15 @@
+#encoding: utf-8
+
 class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if params[:name]
+      @city = City.find_by_id(params[:name][:city_id])
+    else
+      @city = City.find_by_name(current_user.location.split(","))
+    end
+    @cities = City.find(:all, :order => "name")
 
     respond_to do |format|
       format.html # index.html.erb
