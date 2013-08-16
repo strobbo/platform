@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20130816045154) do
 
   create_table "events", :force => true do |t|
     t.integer  "user_id"
+    t.integer  "city_id"
     t.string   "name"
     t.string   "location"
     t.date     "date"

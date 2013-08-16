@@ -8,11 +8,11 @@ class User < ActiveRecord::Base
 	acts_as_reader
 
   # Setup accessible (or protected) attributes for your model
-	attr_accessible :email, :encrypted_password, :provider, :uid, :name, :image, :location, 
-									:profile_url, :image_url, :gender, :birthday
+	attr_accessible :email, :encrypted_password, :provider, :uid, :name, :image, :location,
+								:profile_url, :image_url, :gender, :birthday
 
 	# Relacionamentos nos quais este usuário possuem eventos
-	has_many :events, dependent: :destroy
+	has_many :events, :dependent => :destroy
 
 	# Relacionamentos nos quais este usuário segue outro usuário
 	has_many :relationships, 
