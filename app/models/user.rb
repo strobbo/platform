@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
 					 :class_name => "Relationship", :foreign_key => "followed_id", :dependent => :destroy
 	has_many :followers, :through => :reverse_relationships, :source => :follower
 
+	# Relacionamentos nos quais o usuário possuis status em eventos
+  has_many :statuses
+  has_many :events, through: :statuses
+
 	def follow(user)
 		self.relationships.build(:followed_id => user.id).save
 	end

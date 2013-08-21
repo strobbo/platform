@@ -12,6 +12,7 @@ Platform::Application.routes.draw do
   resources :activities, :only => :index
   resources :events
   resources :relationships, :only => [:create, :destroy]
+  resources :statuses, :only => [:create, :destroy]
 
   resources :users do
     member do

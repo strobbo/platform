@@ -25,5 +25,14 @@
   <%= @event.description %>
 </p>
 
+<%= render 'status_form' %>
+
+<% @event.statuses.each do |status| %>
+<%=		"#{status.user.name}: #{status.text}" %>
+<br>
+<% end %> 		
+
+<br></<br>
+
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

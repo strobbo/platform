@@ -1,0 +1,7 @@
+<h2><%= @title %></h2>
+
+<% if @event.participants.any? %>
+	<ul class="participants">
+  	<%= render @events.participants %>
+  </ul>
+<% end %>
