@@ -29,7 +29,7 @@
 </table>
 
 <%= form_tag("/events", method: "get") do %>
-  <%= collection_select(:name, :city_id, @cities, :id, :name) %>
+  <%= collection_select(:name, :city_id, @cities, :id, :name, {:selected => @city.id}) %>
   <%= submit_tag("Submit") %>
 <% end %>
 <%= @x %>
