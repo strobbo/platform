@@ -22,10 +22,11 @@ end
 gem 'jquery-rails'
 gem 'rails3-jquery-autocomplete'
 
-# Gems para autenticação
+# Gems para autenticação e controle de permissão
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'cancan'
 
 # Gem para integração com a API do Facebook
 gem 'fb_graph'
