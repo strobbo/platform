@@ -18,13 +18,15 @@ class StatusesController < ApplicationController
     end
   end
 
-  #def destroy
-  #  @user = Relationship.find(params[:id]).followed
-  #  current_user.unfollow(@user)
-  #  respond_to do |format|
-  #    format.html { redirect_to @user }
-  #    format.js
-  #  end
-  #end
+  def destroy
+    @status = Status.find(params[:id])
+    @status.destroy
+
+    respond_to do |format|
+      format.html { redirect_to @status.event }
+      format.json { head :no_content }
+    end
+  end
+
 
 end

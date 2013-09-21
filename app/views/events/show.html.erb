@@ -28,11 +28,17 @@
 <%= render 'status_form' %>
 
 <% @event.statuses.each do |status| %>
-<%=		"#{status.user.name}: #{status.text}" %>
-<br>
+	<%=	"#{status.user.name}: #{status.text}" %>
+	<% if can? :destroy, status %>
+	    <%= link_to 'Destroy', status, method: :delete, data: { confirm: 'Are you sure?' } %>
+	<% end %>
+	<br>
 <% end %> 		
 
 <br></<br>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
+<% if can? :update, @event %>
+	<%= link_to 'Edit', edit_event_path(@event) %> |
+<% end %>
+
 <%= link_to 'Back', events_path %>
