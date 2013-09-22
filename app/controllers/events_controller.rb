@@ -10,6 +10,9 @@ class EventsController < ApplicationController
     if params[:name]
       @city = City.find_by_id(params[:name][:city_id])
     end
+		
+		# padrão de ordenação da página inicial
+		params[:order] ||= 'followeds'
 
 		if params[:order] == 'date'
 			if @city
@@ -91,7 +94,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-				@event.create_activity :update, :owner => current_user, :unread => true
+				@event.create_activity :update, :owner => current_user
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
