@@ -2,6 +2,7 @@ class Status < ActiveRecord::Base
   attr_accessible :event_id, :text, :user_id
   belongs_to :user
   belongs_to :event
+	has_many :comments
 
 	validate :user_already_in_event
 

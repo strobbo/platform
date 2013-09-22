@@ -10,8 +10,8 @@ Platform::Application.routes.draw do
 	get '/notifications', to: 'activities#notifications', as: 'notifications'
 
   resources :events
-  resources :relationships, :only => [:create, :destroy]
-  resources :statuses, :only => [:create, :destroy]
+  resources :relationships, :comments, :only => [:create, :destroy]
+  resources :statuses, :only => [:create, :destroy, :show]
 
   resources :users do
     member do

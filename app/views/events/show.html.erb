@@ -25,15 +25,9 @@
   <%= @event.description %>
 </p>
 
-<%= render 'status_form' %>
+<%= render 'statuses/form' %>
 
-<% @event.statuses.each do |status| %>
-	<%=	"#{status.user.name}: #{status.text}" %>
-	<% if can? :destroy, status %>
-	    <%= link_to 'Destroy', status, method: :delete, data: { confirm: 'Are you sure?' } %>
-	<% end %>
-	<br>
-<% end %> 		
+<%= render(:partial => "statuses/status_event", :collection => @event.statuses) %>
 
 <br></<br>
 

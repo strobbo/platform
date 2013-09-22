@@ -1,0 +1,5 @@
+<%=	"#{comment_status.user.name}: #{comment_status.text}" %>
+<% if can? :destroy, comment_status %>
+	<%= link_to 'Destroy', comment_status, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<br>

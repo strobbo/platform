@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Comentário:</b>
+  <%= @status.text %>
+</p>
+
+<p>
+  <b>Autor:</b>
+  <%= @status.user.name %>
+</p>
+
+<p>
+  <b>Criado:</b>
+  <%= @status.created_at %>
+</p>
+
+<p>
+  <b>Event:</b>
+  <%= @status.event.name %>
+</p>
+
+<br></<br>
+<hr></hr>
+
+<%= render(:partial => "comments/form") %>
+<%= render(:partial => "comments/comment_status", :collection => @status.comments) %>
+
+
+<%= link_to 'Back', @status.event %>

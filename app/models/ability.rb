@@ -14,6 +14,10 @@ class Ability
 
 		# permissões para usuários interagindo com status
 		can [:read, :create], Status 
-		can [:update, :destroy], Status, :user_id => user.id
+		can [:destroy], Status, :user_id => user.id
+
+		# permissões para usuários interagindo com comentários
+		can [:read, :create], Comment
+		can [:destroy], Comment, :user_id => user.id
   end
 end

@@ -27,4 +27,13 @@ class StatusesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def show
+    @status = Status.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @status }
+    end
+  end
 end
