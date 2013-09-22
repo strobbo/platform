@@ -13,7 +13,7 @@
     <th></th>
   </tr>
 
-<% @city.events.each do |event| %>
+<% @events.each do |event| %>
   <tr>
     <td><%= event.name %></td>
     <td><%= event.city_id %></td>
@@ -37,7 +37,12 @@
 </table>
 
 <%= form_tag("/events", method: "get") do %>
-  <%= collection_select(:name, :city_id, @cities, :id, :name, {:selected => @city.id}) %>
+	<% if @city %>
+	  <%= collection_select(:name, :city_id, @cities, :id, :name, {:selected => @city.id}) %>
+	<% else %>
+	  <%= collection_select(:name, :city_id, @cities, :id, :name) %>
+	<% end %>
+	<%= select_tag(:order, options_for_select([['Data','date'], ['Seguidos', 'followeds'], ['Seguidores', 'followers']])) %>
   <%= submit_tag("Submit") %>
 <% end %>
 <%= @x %>

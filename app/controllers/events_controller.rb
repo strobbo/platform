@@ -9,9 +9,28 @@ class EventsController < ApplicationController
   def index
     if params[:name]
       @city = City.find_by_id(params[:name][:city_id])
-    else
-      @city = City.find_by_name(current_user.location.split(","))
     end
+
+		if params[:order] == 'date'
+			if @city
+				@events = @city.events.order('date ASC')
+			else
+				@events = Event.all.order('date ASC')
+			end			
+		elsif params[:order] == 'followers'
+			if @city
+				@events = @city.events.sort {|a,b| b.number_of_followers(current_user) <=> a.number_of_followers(current_user)}
+			else
+				@events = Event.all.sort {|a,b| b.number_of_followers(current_user) <=> a.number_of_followers(current_user)}
+			end
+		else
+			if @city
+				@events = @city.events.sort {|a,b| b.number_of_followeds(current_user) <=> a.number_of_followeds(current_user)}
+			else
+				@events = Event.all.sort {|a,b| b.number_of_followeds(current_user) <=> a.number_of_followeds(current_user)}
+			end
+		end
+
     @cities = City.find(:all, :order => "name")
 
     respond_to do |format|
