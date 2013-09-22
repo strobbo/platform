@@ -13,20 +13,22 @@ class EventsController < ApplicationController
 		
 		# padrão de ordenação da página inicial
 		params[:order] ||= 'followeds'
+		@order = params[:order]
 
-		if params[:order] == 'date'
+		if @order == 'date'
 			if @city
 				@events = @city.events.order('date ASC')
 			else
-				@events = Event.all.order('date ASC')
+				@events = Event.order('date ASC')
 			end			
-		elsif params[:order] == 'followers'
+		elsif @order == 'followers'
 			if @city
 				@events = @city.events.sort {|a,b| b.number_of_followers(current_user) <=> a.number_of_followers(current_user)}
 			else
 				@events = Event.all.sort {|a,b| b.number_of_followers(current_user) <=> a.number_of_followers(current_user)}
 			end
 		else
+			@order = 'followeds' # tratamento para garantir que qualquer requisição terá um valor válido para o @order
 			if @city
 				@events = @city.events.sort {|a,b| b.number_of_followeds(current_user) <=> a.number_of_followeds(current_user)}
 			else
@@ -57,6 +59,7 @@ class EventsController < ApplicationController
   # GET /events/new.json
   def new
     @event = Event.new
+    @cities = City.find(:all, :order => "name")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -67,6 +70,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    @cities = City.find(:all, :order => "name")
   end
 
   # POST /events

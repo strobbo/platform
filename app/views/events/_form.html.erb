@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :city_id %><br />
-    <%= f.number_field :city_id %>
+	  <%= f.collection_select(:city_id, @cities, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :date %><br />

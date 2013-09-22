@@ -38,11 +38,11 @@
 
 <%= form_tag("/events", method: "get") do %>
 	<% if @city %>
-	  <%= collection_select(:name, :city_id, @cities, :id, :name, {:selected => @city.id}) %>
+	  <%= collection_select(:name, :city_id, @cities, :id, :name, {:selected => @city.id, :prompt => 'Todas as cidades'}) %>
 	<% else %>
-	  <%= collection_select(:name, :city_id, @cities, :id, :name) %>
+	  <%= collection_select(:name, :city_id, @cities, :id, :name, {:prompt => 'Todas as cidades'}) %>
 	<% end %>
-	<%= select_tag(:order, options_for_select([['Data','date'], ['Seguidos', 'followeds'], ['Seguidores', 'followers']])) %>
+	<%= select_tag(:order, options_for_select([['Seguidos', 'followeds'], ['Seguidores', 'followers'], ['Data','date']], @order)) %>
   <%= submit_tag("Submit") %>
 <% end %>
 <%= @x %>
