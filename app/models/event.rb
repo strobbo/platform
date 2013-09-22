@@ -16,4 +16,12 @@ class Event < ActiveRecord::Base
 	def number_of_followeds(user)
 		self.statuses.joins("INNER JOIN (SELECT followed_id FROM relationships WHERE follower_id = #{user.id}) AS followeds ON followeds.followed_id = statuses.user_id").where("event_id = #{self.id}").count
 	end
+
+	def participating?(user)
+		if(self.users.exists?(user))
+			true
+		else
+			false
+		end
+	end
 end

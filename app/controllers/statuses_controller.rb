@@ -7,15 +7,15 @@ class StatusesController < ApplicationController
 		@status.event = Event.find(params[:status][:event_id])
 		@status.text = params[:status][:text]
 
-		if @status.save
-	    respond_to do |format|
-  	    format.html { redirect_to @status.event }
-  	    format.js
-			end
-		else
-			format.html { redirect_to @events , notice: 'Unprocessable.' }
-      format.json { render json: @event.errors, status: :unprocessable_entity }
-    end
+		respond_to do |format|
+			if @status.save
+				format.html { redirect_to @status.event }
+			  format.js
+			else
+				format.html { redirect_to @status.event, notice: :unprocessable}
+		    format.json { render json: @status.errors, status: :unprocessable_entity }
+		  end
+		end
   end
 
   def destroy
@@ -27,6 +27,4 @@ class StatusesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-
 end
